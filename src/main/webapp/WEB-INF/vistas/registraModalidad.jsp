@@ -67,6 +67,7 @@
 <script type="text/javascript">
 
 $.getJSON("listaDeporte", {}, function(data){
+	console.log(data)
 	$.each(data, function(index,item){
 		$("#id_deporte").append("<option value="+item.idDeporte +">"+ item.nombre +"</option>");
 	});
@@ -122,6 +123,11 @@ $('#id_form').bootstrapValidator({
                 	message:'El nombre es de 5 a 100 caracteres',
                 	min : 5,
                 	max : 100
+                },
+                remote:{
+                	deplay:1000,
+                	url: "buscaPorNombreModalidad",
+                	message: "el nombre ya existe"
                 }
             }
         },

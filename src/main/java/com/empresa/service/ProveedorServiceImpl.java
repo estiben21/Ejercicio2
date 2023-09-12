@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.empresa.entity.Proveedor;
-import com.empresa.repository.ModalidadRepository;
 import com.empresa.repository.ProveedorRepoisitory;
 
 @Service
@@ -16,7 +15,7 @@ public class ProveedorServiceImpl implements ProveedorService {
 	private ProveedorRepoisitory repository;
 
 	@Override
-	public Proveedor insertaModalidad(Proveedor obj) {
+	public Proveedor insertaProveedor(Proveedor obj) {
 		return repository.save(obj);
 	}
 
@@ -24,5 +23,11 @@ public class ProveedorServiceImpl implements ProveedorService {
 	public List<Proveedor> ListaPorNombre(String nombre) {
 		return repository.findByNombreIgnoreCase(nombre);
 	}
+	
+	@Override
+	public List<Proveedor> ListaPorDni(String dni) {
+		return repository.findByDniIgnoreCase(dni);
+	}
+
 
 }

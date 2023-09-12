@@ -15,7 +15,7 @@
 <body>
 
 <div class="container">
-<h3>Registra Alumno</h3>
+<h3>Registra Proveedor</h3>
 
 	<form id="id_form"> 
 		<div class="row" style="margin-top: 5%">
@@ -46,13 +46,13 @@
 		 		</div>
 			</div>
 			<div class="form-group col-md-3">
-					<label class="control-label" for="id_idTipo">idTipo</label>
+					<label class="control-label" for="id_idTipo">id Tipo</label>
 					<select id="id_idTipo" name="tipo.idTipo" class='form-control'>
 						<option value=" ">[Seleccione]</option>    
 					</select>
 			    </div>
 			<div class="form-group col-md-3">
-					<label class="control-label" for="id_deporte">idPais</label>
+					<label class="control-label" for="id_Pais">id Pais</label>
 					<select id="id_idPais" name="pais.idPais" class='form-control'>
 						<option value=" ">[Seleccione]</option>    
 					</select>
@@ -60,14 +60,27 @@
 		</div>
 		
 		<div class="row" style="margin-top: 2%" align="center"	>
-				<button id="id_registrar" type="button" class="btn btn-primary" >Crea Alumno</button>
+				<button id="id_registrar" type="button" class="btn btn-primary" >Registrar</button>
 		</div>	
 	</form>
 </div>
 
 <script type="text/javascript">
+$.getJSON("listaTipo", {}, function(data){
+	console.log(data)
+	$.each(data, function(index,item){
+		$("#id_idTipo").append("<option value="+item.descripcion +">"+ item.descripcion +"</option>");
+	});
+});
 
-$("#id_registrar").click(function (){ 
+$.getJSON("listaPais", {}, function(data){
+	console.log(data)
+	$.each(data, function(index,item){
+		$("#id_idPais").append("<option value="+item.nombre +">"+ item.nombre +"</option>");
+	});
+});
+
+$("#id_registrar").click(function(){ 
 
 	//Lanza la validacion
 	var validator = $('#id_form').data('bootstrapValidator');
@@ -77,8 +90,8 @@ $("#id_registrar").click(function (){
 	if (validator.isValid()){
 		$.ajax({
     		type: "POST",
-            url: "registraProveedor", 
             data: $('#id_form').serialize(),
+            url: 'registraProveedor',
             success: function(data){
             	mostrarMensaje(data.MENSAJE);
             	validator.resetForm();
@@ -89,8 +102,6 @@ $("#id_registrar").click(function (){
             }
     	});
 	}   
-    	
-	
 });
 
 
@@ -122,6 +133,11 @@ $(document).ready(function() {
                             max: 40,
                             message: 'El nombre es de 3 a 40 caracteres'
                         },
+                        remote:{
+                        	deplay:1000,
+                        	url: 'buscaPorNombreProveedor',
+                        	message: "el nombre ya existe"
+                        }
                     }
                 },
                 dni:{
@@ -133,6 +149,11 @@ $(document).ready(function() {
                         regexp: {
                             regexp: /^[0-9]{8}$/,
                             message: 'el dni es 8 dígitos'
+                        },
+                        remote:{
+                        	deplay:1000,
+                        	url: 'buscaPorDniProveedor',
+                        	message: "el dni ya existe"
                         }
                     }
                 },

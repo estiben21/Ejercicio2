@@ -9,4 +9,5 @@ import com.empresa.entity.Proveedor;
 public interface ProveedorRepoisitory extends JpaRepository<Proveedor, Integer>{
 
 	public List<Proveedor> findByNombreIgnoreCase(String nombre);
+	public List<Proveedor> findByDniIgnoreCase(String dni);
 }

@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "modalidad")
+@Table(name = "proveedor")
 public class Proveedor {
 	
 	@Id
@@ -34,11 +34,11 @@ public class Proveedor {
 	
 	@ManyToOne
 	@JoinColumn(name = "idTipo")
-	private Tipo idTipo;
+	private Tipo tipo;
 	
 	@ManyToOne
 	@JoinColumn(name = "idPais")
-	private Pais idPais;
+	private Pais pais;
 	
 
 }

@@ -33,14 +33,16 @@ public class RegistraProveedorController {
 	@GetMapping(value = "/verRegistraProveedor" )
 	public String verProveedor() {return "registraProveedor";}
 	
-	@ResponseBody
+	
 	@GetMapping(value = "/listaPais" )
+	@ResponseBody
 	public List<Pais> LisPais(){
 		return PaisService.LisPais();
 	}
 	
-	@ResponseBody
+	
 	@GetMapping(value = "/listaTipo" )
+	@ResponseBody
 	public List<Tipo> LisTipo(){
 		return TipoService.LisTipo();
 	}

@@ -69,14 +69,14 @@
 $.getJSON("listaTipo", {}, function(data){
 	console.log(data)
 	$.each(data, function(index,item){
-		$("#id_idTipo").append("<option value="+item.descripcion +">"+ item.descripcion +"</option>");
+		$("#id_idTipo").append("<option value="+item.idTipo +">"+ item.descripcion +"</option>");
 	});
 });
 
 $.getJSON("listaPais", {}, function(data){
 	console.log(data)
 	$.each(data, function(index,item){
-		$("#id_idPais").append("<option value="+item.nombre +">"+ item.nombre +"</option>");
+		$("#id_idPais").append("<option value="+item.idPais +">"+ item.nombre +"</option>");
 	});
 });
 
